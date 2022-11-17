@@ -2,5 +2,6 @@
 
 public interface IChunkGenerator
 {
-    public void Generate(Vector3Int start, Vector3Int size);
+    public void Instantiate(Vector3Int size);
+    public void GeneratePattern(Vector3Int start, Vector3Int size);
 }
