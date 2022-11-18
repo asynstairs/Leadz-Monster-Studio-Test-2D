@@ -100,9 +100,6 @@ public class ChunkPooler : MonoBehaviour
          Vector3Int position = new((int)_player.transform.position.x, _topAnchor.y);
          GenerateField(position, tiling);
          
-         // Vector3Int removeArea = new(_tilemap.cellBounds.x, _chunkSize.y);
-         // Vector3Int removeStartPoint = new(_bottomAnchor.x, _bottomAnchor.y);
-         // _tilemap.DeleteCells(removeStartPoint, removeArea);
          _bottomAnchor += new Vector3Int(0, _chunkSize.y);
      }
     
