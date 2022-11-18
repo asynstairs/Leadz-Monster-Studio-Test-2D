@@ -2,7 +2,7 @@ using TMPro;
 using UniRx;
 using UnityEngine;
 
-public class UIProviderTimeFeatureOnUpdate : UIProviderFeatureBase<TimeFeature>
+public class UIProviderTimeFeatureOnUpdate : UIProviderFeatureBase<TimeFeatureOnUpdate>
 {
     [SerializeField] private TMP_Text _text;
     [SerializeField] private string _textBeforeResult;

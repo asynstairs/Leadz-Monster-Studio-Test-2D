@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using Zenject;
 
@@ -19,6 +20,9 @@ public class LevelController : MonoBehaviour
 
     [Inject] private PauseWindow _pauseWindow;
     [Inject] private IGamemode _gamemode;
+
+    private AttemptsFeatureOneshot _attemptsFeature;
+    private LevelData _currentLevelData;
 
     private void Start()
     {
@@ -42,14 +46,18 @@ public class LevelController : MonoBehaviour
     
     private void ContructGamemodeFeatures()
     {
+        _currentLevelData =  BinarySerializer.Deserialize();
+        _attemptsFeature = new();
+        _attemptsFeature.Result.Value = _currentLevelData.Attempts;
+        
         _gamemode.Features.Value = new List<IFeatureOneshot>()
         {
-            new AttemptsFeatureOneshot()
+            _attemptsFeature
         };
-        
+
         _gamemode.FeaturesOnUpdate.Value = new List<IFeatureOnUpdate>()
         {
-            new TimeFeature()
+            new TimeFeatureOnUpdate()
         };
         
         FeaturesConstructed?.Invoke();
@@ -70,12 +78,17 @@ public class LevelController : MonoBehaviour
 
     private void OnGamemodeGameEnded()
     {
-        foreach (var feature in _gamemode.Features.Value)
+        _attemptsFeature.Execute();
+        _currentLevelData.Attempts = _attemptsFeature.Result.Value;
+
+        foreach (var feature in _gamemode.FeaturesOnUpdate.Value)
         {
-            feature.Execute();
+            feature.Reset();
         }
 
         GameEnded?.Invoke();
+        
+        BinarySerializer.SerializeAsync(_currentLevelData);
     }
 
     private void OnPause()
