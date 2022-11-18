@@ -18,15 +18,17 @@ public class LevelController : MonoBehaviour
     public event Action GameEnded;
     public event Action FeaturesConstructed;
 
-    [Inject] private PauseWindow _pauseWindow;
+    [Inject] private RestartWindow _restartWindow;
+    [Inject] private StartWindow _startWindow;
     [Inject] private IGamemode _gamemode;
 
     private AttemptsFeatureOneshot _attemptsFeature;
     private LevelData _currentLevelData;
+    private bool _paused;
 
     private void Start()
     {
-        OnPause();
+        TogglePaused();
         ContructGamemodeFeatures();
     }
 
@@ -34,13 +36,11 @@ public class LevelController : MonoBehaviour
     {
         SubscribeToEvents();
     }
-
-    [Inject]
+    
     private void SubscribeToEvents()
     {
-        _pauseWindow.Play += OnPlay;
-        _pauseWindow.Pause += OnPause;
-        _pauseWindow.Restart += OnRestart;
+        _startWindow.Play += OnPlayerPlay;
+        _restartWindow.Restart += OnPlayerRestart;
         _gamemode.GameEnded += OnGamemodeGameEnded;
     }
     
@@ -71,8 +71,9 @@ public class LevelController : MonoBehaviour
         }
     }
 
-    private void OnRestart()
+    private void OnPlayerRestart()
     {
+        TogglePaused();
         GameRestarted?.Invoke();
     }
 
@@ -89,17 +90,17 @@ public class LevelController : MonoBehaviour
         GameEnded?.Invoke();
         
         BinarySerializer.SerializeAsync(_currentLevelData);
+        TogglePaused();
     }
 
-    private void OnPause()
+    private void TogglePaused()
     {
-        Time.timeScale = 0f;
-        GamePaused?.Invoke();
+        Time.timeScale = Time.timeScale == 0f ? 1f : 0f;
     }
 
-    private void OnPlay()
+    private void OnPlayerPlay()
     {
-        Time.timeScale = 1f;
-        GameResumed?.Invoke();
+        TogglePaused();
+        GameRestarted?.Invoke();
     }
 }

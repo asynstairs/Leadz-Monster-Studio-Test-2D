@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using Zenject;
 
+
 [DisallowMultipleComponent]
 [RequireComponent(typeof(Transform))]
 public class RespawnOnGameEndedProvider : MonoBehaviour
@@ -29,11 +30,13 @@ public class RespawnOnGameEndedProvider : MonoBehaviour
     private void SubscribeToEvents()
     {
         _levelController.GameEnded += OnGameEnded;
+        _levelController.GameRestarted += OnGameEnded;
     }
     
     private void UnsubscribeFromEvents()
     {
         _levelController.GameEnded -= OnGameEnded;
+        _levelController.GameRestarted -= OnGameEnded;
     }
     
     private void OnGameEnded()

@@ -13,8 +13,10 @@ public class DifficultiesSelectionWindow : MonoBehaviour, IWindow
     
     [SerializeField] private GameObject _windowHolder;
     [SerializeField] private DifficultySelectorButton[] _difficultyButtons;
+    [SerializeField] private bool _openOnStart;
 
-    [Inject] private PauseWindow _pauseWindow;
+    [Inject] private RestartWindow _restartWindow;
+    [Inject] private StartWindow _startWindow;
     
     private readonly CompositeDisposable _disposables = new ();
 
@@ -32,12 +34,14 @@ public class DifficultiesSelectionWindow : MonoBehaviour, IWindow
 
     private void SubscribeToEvents()
     {
-        _pauseWindow.SelectDifficulty += OnSelectDifficulty;
+        _restartWindow.SelectDifficulty += OnPlayerSelectDifficulty;
+        _startWindow.SelectDifficulty += OnPlayerSelectDifficulty;
     }
 
     private void UnsubscribeFromEvents()
     {
-        _pauseWindow.Pause -= OnSelectDifficulty;
+        _restartWindow.SelectDifficulty -= OnPlayerSelectDifficulty;
+        _startWindow.SelectDifficulty -= OnPlayerSelectDifficulty;
     }
 
     private void SubscribeToObservables()
@@ -47,7 +51,7 @@ public class DifficultiesSelectionWindow : MonoBehaviour, IWindow
 
     private void Awake()
     {
-        SetOpen(false);
+        SetOpen(_openOnStart);
     }
 
     private void SubscribeToButtons()
@@ -64,7 +68,7 @@ public class DifficultiesSelectionWindow : MonoBehaviour, IWindow
         SetOpen(false);
     }
 
-    private void OnSelectDifficulty()
+    private void OnPlayerSelectDifficulty()
     {
         SetOpen(true);
     }
