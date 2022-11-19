@@ -11,10 +11,10 @@ public class GamemodeCollisionDeath : IGamemode
 {
     public ReactiveProperty<List<IFeatureOneshot>> Features { get; set; } = new();
     public ReactiveProperty<List<IFeatureOnUpdate>> FeaturesOnUpdate { get; set; } = new();
+    
+    [Inject] private SignalBus _signalBus;
 
-    [Inject] private readonly SignalBus _signalBus;
-
-    public void OnPlayerCollidedObstacle(SignalPlayerCollidedObstacle signalPlayerCollidedObstacle)
+    public void OnGamemodeTriggered(ISignalGamemodeTriggered signalGamemodeTriggered)
     {
         _signalBus.Fire<SignalGameEnded>();
     }

@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-/// <summary>
+﻿/// <summary>
 /// Counts attempts.
 /// </summary>
 public class AttemptsFeatureOneshot : FeatureBase<uint>, IFeatureOneshot

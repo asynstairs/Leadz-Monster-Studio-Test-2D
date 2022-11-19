@@ -28,13 +28,11 @@ public class RandomTilePooler : MonoBehaviour
 
         for (int i = 0; i < tiles.Length; i++)
         {
-            Debug.Log($"{i} : {tiles[i]}");
             tiles[i].gameObject.SetActive(false);
         }
 
         _lastTileSpawnedXCoord = 0;
         _lastTileSpawnedXCoord += _spawnTileIntervalXCoord;
-        Debug.Log($" spawn coord: {_lastTileSpawnedXCoord}");
     }
 
     private void Awake()

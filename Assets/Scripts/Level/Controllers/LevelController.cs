@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using LevelSignals;
 using UnityEngine;
 using Zenject;
@@ -11,11 +10,10 @@ using Zenject;
 [DisallowMultipleComponent]
 public class LevelController : MonoBehaviour
 {
-    [Inject] private RestartWindow _restartWindow;
     [Inject] private IGamemode _gamemode;
     [Inject] private readonly SignalBus _signalBus;
+    [Inject] private AttemptsFeatureOneshot _attemptsFeature;
     
-    private AttemptsFeatureOneshot _attemptsFeature;
     private LevelData _currentLevelData;
     private bool _paused;
     
@@ -37,27 +35,7 @@ public class LevelController : MonoBehaviour
     private void Awake()
     {
         Time.timeScale = 0f;
-    }
-
-    private void Start()
-    {
-        _currentLevelData =  BinarySerializer.Deserialize();
-        _attemptsFeature = new();
-        _attemptsFeature.Result.Value = _currentLevelData.Attempts;
-    }
-    
-    [Inject]
-    private void ContructGamemodeFeatures()
-    {
-        _gamemode.Features.Value = new List<IFeatureOneshot>()
-        {
-            _attemptsFeature
-        };
-
-        _gamemode.FeaturesOnUpdate.Value = new List<IFeatureOnUpdate>()
-        {
-            new TimeFeatureOnUpdate()
-        };
+        _currentLevelData = BinarySerializer.Deserialize();
     }
 
     private void Update()

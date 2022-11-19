@@ -1,4 +1,3 @@
-using LevelSignals;
 using UnityEngine;
 using Zenject;
 
@@ -10,7 +9,7 @@ public class PlayerCollisionEventBroadcaster : MonoBehaviour
     {
         if (collision.gameObject.GetComponent<TagObstacle>())
         {
-            _signalBus.AbstractFire<SignalPlayerCollidedObstacle>(new (){Obstacle = collision.gameObject.GetComponent<TagObstacle>()});
+            _signalBus.AbstractFire<SignalGamemodeCollisionDeathTriggered>();
         }
     }
 }

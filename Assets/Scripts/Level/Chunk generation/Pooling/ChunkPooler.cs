@@ -24,8 +24,6 @@ public class ChunkPooler : MonoBehaviour
     private void Start()
     {
         InstantiateChunks();
-        
-        Debug.Log($"ON GAME ENDED");
         GenerateChunks(_countChunks);
     }
 

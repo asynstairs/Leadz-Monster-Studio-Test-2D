@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using LevelSignals;
 using UniRx;
 
@@ -10,4 +9,6 @@ public interface IGamemode
 {
     public ReactiveProperty<List<IFeatureOneshot>> Features { get; set; }
     public ReactiveProperty<List<IFeatureOnUpdate>> FeaturesOnUpdate { get; set; }
+
+    public void OnGamemodeTriggered(ISignalGamemodeTriggered signalGamemodeTriggered);
 }
