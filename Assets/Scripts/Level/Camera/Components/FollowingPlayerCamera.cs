@@ -1,6 +1,9 @@
 using UnityEngine;
 using Zenject;
 
+/// <summary>
+/// Makes camera to follow a player.
+/// </summary>
 [RequireComponent(typeof(Camera))]
 public class FollowingPlayerCamera : MonoBehaviour
 {
@@ -14,10 +17,10 @@ public class FollowingPlayerCamera : MonoBehaviour
 
     private void Awake()
     {
-        Initialize();
+        Init();
     }
 
-    private void Initialize()
+    private void Init()
     {
         _cameraTransform = GetComponent<Transform>();
         _playerTransform = _player.GetComponent<Transform>();

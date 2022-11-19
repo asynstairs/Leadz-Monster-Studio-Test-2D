@@ -1,0 +1,57 @@
+{
+    "name": "Player input",
+    "maps": [
+        {
+            "name": "Air",
+            "id": "4861f32d-a6b0-45f3-8353-0273a2d2b027",
+            "actions": [
+                {
+                    "name": "Up",
+                    "type": "Value",
+                    "id": "1004674e-943f-48d3-9fb5-be9e77f1e1f5",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "0200be04-99f5-4cd3-93ad-9c6cf619ff3b",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "PC",
+                    "action": "Up",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1d897a83-cbaa-4cef-882f-3af5d36218c8",
+                    "path": "<Keyboard>/upArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "PC",
+                    "action": "Up",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": [
+        {
+            "name": "PC",
+            "bindingGroup": "PC",
+            "devices": [
+                {
+                    "devicePath": "<Keyboard>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        }
+    ]
+}

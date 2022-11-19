@@ -4,8 +4,10 @@ using UnityEngine;
 using Zenject;
 
 /// <summary>
-/// Creates a single tile.
+/// Creates a single tile per the given interval
+/// at a random height.
 /// </summary>
+[DisallowMultipleComponent]
 public class RandomTilePooler : MonoBehaviour
 {
     public readonly Queue<Transform> Tiles = new();
@@ -24,15 +26,24 @@ public class RandomTilePooler : MonoBehaviour
 
     public void OnGameRestarted(SignalGameRestarted signalGameRestarted)
     {
+        DeactivateTiles();
+        ResetLastTileSpawnedXCoord();
+    }
+
+    private void ResetLastTileSpawnedXCoord()
+    {
+        _lastTileSpawnedXCoord = 0;
+        _lastTileSpawnedXCoord += _spawnTileIntervalXCoord;
+    }
+
+    private void DeactivateTiles()
+    {
         var tiles = Tiles.ToArray();
 
         for (int i = 0; i < tiles.Length; i++)
         {
             tiles[i].gameObject.SetActive(false);
         }
-
-        _lastTileSpawnedXCoord = 0;
-        _lastTileSpawnedXCoord += _spawnTileIntervalXCoord;
     }
 
     private void Awake()

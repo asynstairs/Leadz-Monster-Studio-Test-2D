@@ -21,6 +21,11 @@ public class DifficultySelectorButton : MonoBehaviour
 
     private void Awake()
     {
+        Init();
+    }
+
+    private void Init()
+    {
         _button = GetComponent<Button>();
     }
 

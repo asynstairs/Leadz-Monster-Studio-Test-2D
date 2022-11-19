@@ -1,5 +1,5 @@
 ﻿/// <summary>
-/// This is a Feature that needs to be executed each frame.
+/// Needs to be executed each frame.
 /// </summary>
 public interface IFeatureOnUpdate : IFeature
 {

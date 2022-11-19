@@ -341,11 +341,11 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1202965787}
-  - {fileID: 1907934981}
   - {fileID: 467850163}
   - {fileID: 1156482513}
   - {fileID: 365920421}
   - {fileID: 1863935649}
+  - {fileID: 1907934981}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -638,7 +638,7 @@ RectTransform:
   m_Children:
   - {fileID: 1281664170}
   m_Father: {fileID: 146962811}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
@@ -843,7 +843,7 @@ Transform:
   m_Children:
   - {fileID: 1793423074}
   m_Father: {fileID: 146962811}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &467850164
 MonoBehaviour:
@@ -1300,7 +1300,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _countChunks: 5
   _deltaTilesPooling: 10
-  _startPosition: {x: 4, y: -8, z: 0}
+  _startPosition: {x: 2, y: -8, z: 0}
 --- !u!4 &574223040
 Transform:
   m_ObjectHideFlags: 0
@@ -2217,7 +2217,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _horizontalSpeed: 80
   _verticalSpeed: 100
-  _verticalSpeedIncreaseTimeoutSeconds: 150
+  _verticalSpeedIncreaseTimeoutSeconds: 15
   _verticalVelocityIncrease: 100
 --- !u!4 &1036994881
 Transform:
@@ -2349,7 +2349,7 @@ Transform:
   m_Children:
   - {fileID: 324006370}
   m_Father: {fileID: 146962811}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1156482515
 MonoBehaviour:
@@ -3518,7 +3518,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 146962811}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
@@ -3656,7 +3656,7 @@ RectTransform:
   m_Children:
   - {fileID: 762695789}
   m_Father: {fileID: 146962811}
-  m_RootOrder: 1
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -3696,7 +3696,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 0.003921569, b: 0.3764706, a: 1}
+    m_NormalColor: {r: 1, g: 0.023584902, b: 0.3575077, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}

@@ -38,7 +38,7 @@ public class ChunkPooler : MonoBehaviour
     {
         for (int _ = 0; _ < _countChunks; ++_)
         {
-            _generator.Instantiate();
+            _generator.InstantiateChunk();
         }
     }
     
@@ -53,7 +53,7 @@ public class ChunkPooler : MonoBehaviour
     private void GenerateNextChunk()
     {
         Vector3Int nextChunkStartPosition = new (_startPosition.x + _lastTileSpawnedXCoord, _startPosition.y);
-        _generator.GeneratePattern(nextChunkStartPosition);
+        _generator.GeneratePatternInInstantiatedChunk(nextChunkStartPosition);
         _lastTileSpawnedXCoord += _generator.ChunkSize.x;
     }
     

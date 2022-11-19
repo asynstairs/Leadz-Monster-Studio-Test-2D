@@ -27,12 +27,19 @@ public class LevelController : MonoBehaviour
         _attemptsFeature.Execute();
         _currentLevelData.Attempts = _attemptsFeature.Result.Value;
 
-        BinarySerializer.SerializeAsync(_currentLevelData);
+#pragma warning disable CS4014 
+        BinarySerializer.Serialize(_currentLevelData); // we just asyncly send info, we never want to await
+#pragma warning restore CS4014
 
         TogglePaused();
     }
 
     private void Awake()
+    {
+        Init();
+    }
+
+    private void Init()
     {
         Time.timeScale = 0f;
         _currentLevelData = BinarySerializer.Deserialize();
@@ -45,7 +52,6 @@ public class LevelController : MonoBehaviour
             featureOnUpdate.ExecuteOnUpdate(Time.deltaTime);
         }
     }
-    
 
     private void OnPlayerRestart()
     {
@@ -57,7 +63,6 @@ public class LevelController : MonoBehaviour
             feature.Reset();
         }
     }
-
 
     private void TogglePaused()
     {

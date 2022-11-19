@@ -13,18 +13,31 @@ public class PlayerMovementController : MonoBehaviour
     private PlayerInputSystem _playerInputSystem;
     private Rigidbody2D _rigidbody;
     private bool _canMove;
+    private float _startVerticalSpeed;
 
-    private void Start()
-    {
-        _canMove = true;
-        _playerInputSystem = new();
-        _playerInputSystem.Enable();
-        StartCoroutine(IncreaseVerticalVelocity());
-    }
-    
     public void OnDifficultySelectionChanged(SignalDifficultyChanged signalDifficultyChanged)
     {
         _horizontalSpeed = signalDifficultyChanged.Difficulty.HorizontalSpeed;
+        _startVerticalSpeed = signalDifficultyChanged.Difficulty.HorizontalSpeed;
+    }
+
+    public void OnGameRestarted(SignalGameRestarted signalGameRestarted)
+    {
+        _verticalSpeed = _startVerticalSpeed;
+    }
+    
+    private void Start()
+    {
+        Init();
+        StartCoroutine(IncreaseVerticalVelocity());
+    }
+
+    private void Init()
+    {
+        _startVerticalSpeed = _verticalSpeed;
+        _canMove = true;
+        _playerInputSystem = new();
+        _playerInputSystem.Enable();
     }
 
     [Inject]

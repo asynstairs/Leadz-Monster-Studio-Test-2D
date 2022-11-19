@@ -1,9 +1,7 @@
-using System;
 using LevelSignals;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
-
 
 public class RestartWindow : MonoBehaviour, IWindow
 {
