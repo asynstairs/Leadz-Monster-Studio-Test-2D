@@ -1,3 +1,4 @@
+using System;
 using LevelSignals;
 using TMPro;
 using UniRx;
@@ -23,5 +24,10 @@ public class UIProviderTimeFeatureOnUpdate : MonoBehaviour
     private void OnTimeChanged(float time)
     {
         _text.text = $"{_textBeforeResult} {time} seconds.";
+    }
+
+    private void OnDestroy()
+    {
+        _disposable.Dispose();
     }
 }

@@ -6,7 +6,7 @@ In Releases.
 
 Made by Tkachev Alexey Igorich | HeadHunter: https://hh.ru/resume/aa01b16fff0b1fb6340039ed1f354d484f586c
 
-[](Readme%20files/Gif/Game%20preview.gif)
+![](Readme%20files/Gif/Game%20preview.gif)
 
 ## Single chunk generation slowmotion
-[](Readme%20files/Gif/chunk%20generation.gif)
+![](Readme%20files/Gif/chunk%20generation.gif)

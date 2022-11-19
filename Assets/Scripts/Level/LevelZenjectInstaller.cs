@@ -12,13 +12,6 @@ public class LevelZenjectInstaller : MonoInstaller
     {
         DeclareSignals();
         BindSignals();
-        
-        // Container.Bind<IGamemode>()
-        //     .To<GamemodeCollisionDeath>()
-        //     .FromMethod(CreateGamemodeWithInjectedFeatures)
-        //     .AsSingle()
-        //     .Lazy();
-        
         CreateGamemodeWithInjectedFeatures();
         
         Container.Bind<TagPlayer>()
@@ -44,7 +37,7 @@ public class LevelZenjectInstaller : MonoInstaller
         Container.BindInstance(attemptsFeatureOneshot).AsSingle().Lazy();
         Container.BindInstance(timeFeature).AsSingle().Lazy();
             
-        GamemodeCollisionDeath gamemode = new();
+        GamemodeDefault gamemode = new();
 
         gamemode.Features = new ReactiveProperty<List<IFeatureOneshot>>();
         
@@ -63,45 +56,6 @@ public class LevelZenjectInstaller : MonoInstaller
         Container.Bind<IGamemode>().FromInstance(gamemode).AsSingle().NonLazy();
         
         Container.QueueForInject(gamemode);
-    }
-
-    private GamemodeCollisionDeath CreateGamemodeWithInjectedFeatures(InjectContext context)
-    {
-        LevelData data = BinarySerializer.Deserialize();
-        
-        AttemptsFeatureOneshot attemptsFeatureOneshot = new();
-        attemptsFeatureOneshot.Result.Value = data.Attempts;
-        
-        TimeFeatureOnUpdate timeFeature = new();
-
-        context.Container.BindInstance(attemptsFeatureOneshot).AsSingle().Lazy();
-        context.Container.BindInstance(timeFeature).AsSingle().Lazy();
-            
-        GamemodeCollisionDeath gamemode = new();
-
-        gamemode.Features = new ReactiveProperty<List<IFeatureOneshot>>();
-        
-        gamemode.Features.Value = new List<IFeatureOneshot>()
-        {
-            attemptsFeatureOneshot
-        };
-        
-        gamemode.FeaturesOnUpdate = new ReactiveProperty<List<IFeatureOnUpdate>>();
-        
-        gamemode.FeaturesOnUpdate.Value = new List<IFeatureOnUpdate>()
-        {
-            timeFeature
-        };
-
-        return gamemode;
-    }
-    
-    private AttemptsFeatureOneshot CreateAttempsFeatureOneshot()
-    {
-        LevelData data = BinarySerializer.Deserialize();
-        AttemptsFeatureOneshot feature = new();
-        feature.Result.Value = data.Attempts;
-        return feature;
     }
 
     private void DeclareSignals()
@@ -154,6 +108,10 @@ public class LevelZenjectInstaller : MonoInstaller
         
         Container.BindSignal<SignalGameRestarted>()
             .ToMethod<RandomTilePooler>(a => a.OnGameRestarted)
+            .FromResolve();
+        
+        Container.BindSignal<SignalGameRestarted>()
+            .ToMethod<PlayerMovementController>(a => a.OnGameRestarted)
             .FromResolve();
     }
 }

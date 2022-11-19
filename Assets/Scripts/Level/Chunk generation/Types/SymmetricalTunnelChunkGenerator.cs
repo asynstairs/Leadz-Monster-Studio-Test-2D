@@ -6,7 +6,7 @@ using Random = UnityEngine.Random;
 /// <summary>
 /// Creates the chunk.
 /// </summary>
-public class SymmethricalTunnelChunkGenerator : MonoBehaviour, IChunkGenerator
+public class SymmetricalTunnelChunkGenerator : MonoBehaviour, IChunkGenerator
 {
     public Vector3Int ChunkSize => _chunkSize;
     public readonly Queue<Transform> Tiles = new();
@@ -28,33 +28,24 @@ public class SymmethricalTunnelChunkGenerator : MonoBehaviour, IChunkGenerator
             tiles[i].gameObject.SetActive(false);
         }
     }
-
-    public void GeneratePattern(Vector3Int start)
+    
+    public void GeneratePatternInInstantiatedChunk(Vector3Int bottomLeftStartPoint)
     {
-        for (int x = 0; x < ChunkSize.x; x++)
+        for (int x = 0; x < ChunkSize.x; ++x)
         {
             int randomLineHeight = Random.Range(1, _tunnelColumnsMaxHeight);
 
-            for (int y = 0; y < randomLineHeight; y++)
+            for (int y = 0; y < randomLineHeight; ++y)
             {
-                _lastLowerPoint = new(start.x + x, start.y + y);
-                _lastUpperPoint = new(_lastLowerPoint.x,   start.y + ChunkSize.y - _lastLowerPoint.y);
+                _lastLowerPoint = new(bottomLeftStartPoint.x + x, bottomLeftStartPoint.y + y);
+                _lastUpperPoint = new(_lastLowerPoint.x,   bottomLeftStartPoint.y + ChunkSize.y - _lastLowerPoint.y);
                 SpawnTile(_lastLowerPoint);
                 SpawnTile(_lastUpperPoint);
             }
         }
     }
     
-
-    private void SpawnTile(Vector3Int position)
-    {
-        var tile = Tiles.Dequeue();
-        Tiles.Enqueue(tile);
-        tile.gameObject.SetActive(true);
-        tile.transform.position = position;
-    }
-
-    public void Instantiate()
+    public void InstantiateChunk()
     {
         var count = ChunkSize.x * ChunkSize.y;
         
@@ -64,6 +55,14 @@ public class SymmethricalTunnelChunkGenerator : MonoBehaviour, IChunkGenerator
             go.SetActive(false);
             Tiles.Enqueue(go.transform);
         }
+    }
+    
+    private void SpawnTile(Vector3Int position)
+    {
+        var tile = Tiles.Dequeue();
+        Tiles.Enqueue(tile);
+        tile.gameObject.SetActive(true);
+        tile.transform.position = position;
     }
 }
 

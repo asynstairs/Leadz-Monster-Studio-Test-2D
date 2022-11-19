@@ -2,6 +2,9 @@
 using UnityEngine;
 using Zenject;
 
+/// <summary>
+/// Respawns the player if fired the game restart signal.
+/// </summary>
 public class RespawnPlayerController
 {
     private readonly Transform _playerTransform;

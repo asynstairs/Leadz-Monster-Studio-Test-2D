@@ -1,12 +1,7 @@
-﻿using System;
-using LevelSignals;
+﻿using LevelSignals;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
-
-namespace LevelSignals
-{
-}
 
 public class StartWindow : MonoBehaviour, IWindow
 {

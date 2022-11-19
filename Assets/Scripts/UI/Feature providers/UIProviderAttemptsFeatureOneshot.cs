@@ -23,4 +23,9 @@ public class UIProviderAttemptsFeatureOneshot : MonoBehaviour
     {
         _text.text = $"{_textBeforeResult}: {count}";
     }
+
+    private void OnDestroy()
+    {
+        _disposable.Dispose();
+    }
 }

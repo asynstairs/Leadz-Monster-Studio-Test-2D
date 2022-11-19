@@ -1,7 +1,12 @@
 using UnityEngine;
 using Zenject;
 
-public class PlayerCollisionEventBroadcaster : MonoBehaviour
+/// <summary>
+/// This component of the player makes the game over
+/// if the player collides a TagObstacle.
+/// </summary>
+[DisallowMultipleComponent]
+public class PlayerDeathOnCollision : MonoBehaviour
 {
     [Inject] private readonly SignalBus _signalBus;
 
