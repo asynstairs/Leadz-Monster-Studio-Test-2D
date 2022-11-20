@@ -2298,7 +2298,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _text: {fileID: 1202965785}
-  _textBeforeResult: 'Time passed:'
+  _textBeforeResult: Time passed
 --- !u!114 &1040131553
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2661,7 +2661,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _text: {fileID: 1863935650}
-  _textBeforeResult: 'Attempts: '
+  _textBeforeResult: Attempts
 --- !u!1 &1454505552
 GameObject:
   m_ObjectHideFlags: 0
